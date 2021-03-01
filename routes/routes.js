@@ -3,11 +3,13 @@ import IndexController from "../controller/indexController.js";
 import UserController from "../controller/userController.js";
 import RolesController from "../controller/rolesContoller.js";
 import JsonWebTokenManagement from "../middleware/JsonWebTokenManagement.js";
+import todoController from "../controller/ToDoController.js";
 
 var router = express.Router();
 var indexControler = new IndexController();
 var userController = new UserController();
 var rolesController = new RolesController();
+var ToDoContoller=new todoController();
 var jsonwebtokenmanagement = new JsonWebTokenManagement();
 /* GET home page. */
 /**
@@ -40,5 +42,10 @@ router.delete("/roles/:id", rolesController.deleteRol);
 /* 
 Implemente 
 */
+/*    Servicios de examen  */
 
+router.post("/examen", ToDoContoller.createExamen);
+router.delete("/examen/:id", ToDoContoller.deleteTarea);
+router.put("/examen/:id", ToDoContoller.updateTarea);
+router.get("/examen", ToDoContoller.getTareas);
 export default router;
